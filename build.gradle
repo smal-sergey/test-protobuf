@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
+    }
+}
+
+plugins {
+    id "com.google.protobuf" version "0.8.17"
+    id 'java'
+    id 'idea'
+    id "me.champeau.jmh" version "0.6.6"
+}
+
+group 'com.smalser.test'
+version '1.0-SNAPSHOT'
+
+ext {
+    protobufVersion = "3.18.0"
+    jmhVersion = "1.33"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
+    implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
+
+    jmh "org.openjdk.jmh:jmh-core:${jmhVersion}"
+//    jmh "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+    testAnnotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+}
+
+jmh {
+    iterations = 5
+    fork = 5
+    threads = 4
+    jvmArgs = ['-server']
+    timeUnit = 'ns'
+    warmupIterations = 5
+    jmhVersion = "1.33"
+    benchmarkMode = ['AverageTime']
+}

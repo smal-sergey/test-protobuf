@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package tutorial;
+
+option java_multiple_files = true;
+option java_package = "com.smalser.test.proto";
+option java_outer_classname = "AddressBookProtos";
+
+message Person {
+  int32 id = 1;
+  string name = 2;
+  string mail = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message Phone {
+    int32 number = 1;
+    PhoneType type = 2;
+  }
+
+  repeated Phone phone = 4;
+}
+
+message AddressBook {
+  repeated Person person = 1;
+}
