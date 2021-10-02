@@ -1,3 +1,5 @@
+package com.smalser.test;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.smalser.test.proto.AddressBook;
 import com.smalser.test.proto.Person;
