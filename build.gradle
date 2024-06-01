@@ -33,7 +33,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 
     jmh "org.openjdk.jmh:jmh-core:${jmhVersion}"
-//    jmh "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+    jmh "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+    jmhAnnotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
     testAnnotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
 }
 
